@@ -1,0 +1,40 @@
+packages:
+  darwin:
+    formula:
+      - ast-grep
+      - btop
+      - fd
+      - fish
+      - fisher
+      - fzf
+      - lazygit
+      - neovim
+      - ripgrep
+      - zoxide
+    cask:
+      - font-fira-code-nerd-font
+      - tailscale-app
+      - wezterm
+  debian:
+    apt:
+      - btop
+      - fd-find
+      - fish
+      - fzf
+      - lazygit
+      - ripgrep
+      - zoxide
+    flatpak:
+      - io.neovim.nvim
+  fedora:
+    copr:
+      - dejan/lazygit
+    dnf:
+      - btop
+      - fd-find
+      - fish
+      - fzf
+      - lazygit
+      - neovim
+      - ripgrep
+      - zoxide

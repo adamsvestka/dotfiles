@@ -1,0 +1,17 @@
+{{ if eq .osid "linux-fedora" -}}
+#!/bin/bash
+
+{{ range .packages.fedora.copr -}}
+sudo dnf copr enable -y {{ . }}
+{{ end -}}
+
+sudo dnf install -y \
+{{ range .packages.fedora.dnf -}}
+  {{ . | quote }} \
+{{ end }}
+
+flatpak install -y flathub \
+{{ range .packages.fedora.flatpak -}}
+  {{ . | quote }} \
+{{ end }}
+{{ end -}}

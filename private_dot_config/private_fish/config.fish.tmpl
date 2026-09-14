@@ -1,0 +1,45 @@
+if status is-interactive
+    zoxide init fish --cmd cd | source
+
+    abbr -a ls eza
+    abbr -a la "eza -a --icons"
+    abbr -a ll "eza -la --icons --git"
+    abbr -a lt "eza -la --icons --tree --level=2"
+
+    abbr -a rsyncp "rsync -ah --no-i-r --info=progress2 --stats"
+
+    abbr -a ffmpeg "ffmpeg -hide_banner"
+    abbr -a ffprobe "ffprobe -hide_banner"
+
+    function remove_path
+        if set -l index (contains -i "$argv" $fish_user_paths)
+            set -e fish_user_paths[$index]
+            echo "Removed $argv from the path"
+        end
+    end
+
+    abbr -a gs git status
+    abbr -a ga git add
+    abbr -a gc git commit
+    abbr -a gp git push
+    abbr -a gl git log --oneline
+    abbr -a gco git checkout
+    abbr -a gb git branch
+    abbr -a gd git diff
+
+    {{ if eq .chezmoi.os "darwin" -}}
+    # function get_idf
+    #     set -gx IDF_CCACHE_ENABLE 1
+    #     echo "Added environment variable IDF_CCACHE_ENABLE = $IDF_CCACHE_ENABLE"
+    #     source (/bin/ls $HOME/.espressif/tools/activate_idf_v*.fish | sort -n | tail -n1)
+    # end
+
+    abbr -a ql "qlmanage -p"
+    abbr -a libreoffice "/Applications/LibreOffice.app/Contents/MacOS/soffice"
+
+    ssh-add --apple-load-keychain -q
+
+    abbr -a tulvpn "security find-generic-password -s com.apple.network.eap.user.item.wlan.ssid.eduroam -w | sudo openconnect --authgroup TUL_only --user adam.svestka@tul.cz --passwd-on-stdin --csd-user adam vpn.tul.cz"
+    abbr -a noenv 'sandbox-exec -p "(version 1) (allow default) (deny file* (literal \"$(pwd)/.env\"))"'
+    {{- end }}
+end

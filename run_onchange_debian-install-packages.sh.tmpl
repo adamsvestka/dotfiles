@@ -1,0 +1,14 @@
+{{ if eq .osid "linux-debian" -}}
+#!/bin/bash
+
+sudo apt-get update
+sudo apt-get install -y \
+{{ range .packages.debian.apt -}}
+  {{ . | quote }} \
+{{ end }}
+
+flatpak install -y flathub \
+{{ range .packages.debian.flatpak -}}
+  {{ . | quote }} \
+{{ end }}
+{{ end -}}
