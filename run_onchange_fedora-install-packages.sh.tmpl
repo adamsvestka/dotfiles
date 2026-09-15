@@ -10,7 +10,7 @@ sudo dnf install -y \
   {{ . | quote }} \
 {{ end }}
 
-flatpak install -y flathub \
+sudo flatpak install -y flathub \
 {{ range .packages.fedora.flatpak -}}
   {{ . | quote }} \
 {{ end }}
