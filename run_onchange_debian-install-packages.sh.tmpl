@@ -1,4 +1,12 @@
-{{ if eq .osid "linux-debian" -}}
+{{ if (stat "/etc/pve") -}}
+#!/bin/bash
+
+apt-get update
+apt-get install -y \
+{{ range .packages.debian.apt -}}
+  {{ . | quote }} \
+{{ end }}
+{{ else if eq .osid "linux-debian" -}}
 #!/bin/bash
 
 sudo apt-get update
