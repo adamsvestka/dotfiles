@@ -3,6 +3,7 @@ packages:
     formula:
       - ast-grep
       - btop
+      - eza
       - fd
       - fish
       - fisher
@@ -18,6 +19,7 @@ packages:
   debian:
     apt:
       - btop
+      - eza
       - fd-find
       - fish
       - fzf
@@ -31,6 +33,7 @@ packages:
       - dejan/lazygit
     dnf:
       - btop
+      - eza
       - fd-find
       - fish
       - fzf
