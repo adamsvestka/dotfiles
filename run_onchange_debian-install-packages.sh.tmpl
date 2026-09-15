@@ -7,8 +7,7 @@ sudo apt-get install -y \
   {{ . | quote }} \
 {{ end }}
 
-sudo flatpak install -y flathub \
-{{ range .packages.debian.flatpak -}}
-  {{ . | quote }} \
+{{ range .packages.debian.snap -}}
+sudo snap install --classic {{ . | quote }}
 {{ end }}
 {{ end -}}

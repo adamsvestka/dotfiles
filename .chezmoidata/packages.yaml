@@ -24,8 +24,8 @@ packages:
       - lazygit
       - ripgrep
       - zoxide
-    flatpak:
-      - io.neovim.nvim
+    snap:
+      - nvim
   fedora:
     copr:
       - dejan/lazygit
