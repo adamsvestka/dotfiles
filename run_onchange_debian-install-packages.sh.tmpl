@@ -1,21 +1,27 @@
 {{ if (stat "/etc/pve") -}}
 #!/bin/bash
 
+{{ if .packages.debian.apt -}}
 apt-get update
 apt-get install -y \
 {{ range .packages.debian.apt -}}
   {{ . | quote }} \
-{{ end }}
+{{ end -}}
+{{ end -}}
 {{ else if eq .osid "linux-debian" -}}
 #!/bin/bash
 
+{{ if .packages.debian.apt -}}
 sudo apt-get update
 sudo apt-get install -y \
 {{ range .packages.debian.apt -}}
   {{ . | quote }} \
-{{ end }}
+{{ end -}}
+{{ end -}}
 
+{{ if .packages.debian.snap -}}
 {{ range .packages.debian.snap -}}
 sudo snap install --classic {{ . | quote }}
-{{ end }}
+{{ end -}}
+{{ end -}}
 {{ end -}}
