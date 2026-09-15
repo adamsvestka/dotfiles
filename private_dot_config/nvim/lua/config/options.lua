@@ -3,7 +3,14 @@
 -- Add any additional options here
 
 if vim.env.SSH_CLIENT or vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
-  vim.opt.clipboard = "unnamedplus"
+  vim.o.clipboard = "unnamedplus"
+
+  local function paste()
+    return {
+      vim.fn.split(vim.fn.getreg(""), "\n"),
+      vim.fn.getregtype(""),
+    }
+  end
 
   vim.g.clipboard = {
     name = "OSC 52",
@@ -12,8 +19,8 @@ if vim.env.SSH_CLIENT or vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
       ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
     },
     paste = {
-      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+      ["+"] = paste,
+      ["*"] = paste,
     },
   }
 end
