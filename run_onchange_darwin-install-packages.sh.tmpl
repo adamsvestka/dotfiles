@@ -1,14 +1,17 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
-{{ if or .packages.darwin.formula .packages.darwin.cask -}}
+{{ $hasFormula := and (hasKey .packages "darwin") (hasKey .packages.darwin "formula") .packages.darwin.formula -}}
+{{ $hasCask := and (hasKey .packages "darwin") (hasKey .packages.darwin "cask") .packages.darwin.cask -}}
+
+{{ if or $hasFormula $hasCask -}}
 brew bundle --file=/dev/stdin <<EOF
-{{ if .packages.darwin.formula -}}
+{{ if $hasFormula -}}
 {{ range .packages.darwin.formula -}}
 brew {{ . | quote }}
 {{ end -}}
 {{ end -}}
-{{ if .packages.darwin.cask -}}
+{{ if $hasCask -}}
 {{ range .packages.darwin.cask -}}
 cask {{ . | quote }}
 {{ end -}}
