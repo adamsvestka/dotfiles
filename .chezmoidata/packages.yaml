@@ -4,6 +4,7 @@ packages:
       - ast-grep
       - btop
       - eza
+      - fastfetch
       - fd
       - fish
       - fisher
@@ -20,6 +21,7 @@ packages:
     apt:
       - btop
       - eza
+      - fastfetch
       - fd-find
       - fish
       - fzf
@@ -34,6 +36,7 @@ packages:
     dnf:
       - btop
       - eza
+      - fastfetch
       - fd-find
       - fish
       - fzf
