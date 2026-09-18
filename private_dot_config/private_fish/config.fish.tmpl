@@ -41,5 +41,7 @@ if status is-interactive
 
     abbr -a tulvpn "security find-generic-password -s com.apple.network.eap.user.item.wlan.ssid.eduroam -w | sudo openconnect --authgroup TUL_only --user adam.svestka@tul.cz --passwd-on-stdin --csd-user adam vpn.tul.cz"
     abbr -a noenv 'sandbox-exec -p "(version 1) (allow default) (deny file* (literal \"$(pwd)/.env\"))"'
-    {{- end }}
+    {{ end -}}
+
+    fastfetch
 end
