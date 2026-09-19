@@ -1,4 +1,4 @@
-{{ if (stat "/etc/pve") -}}
+{{ if eq .osid "linux-debian" -}}
 #!/bin/bash
 
 {{ if and (hasKey .packages "debian") (hasKey .packages.debian "apt") .packages.debian.apt -}}
@@ -6,20 +6,10 @@ apt-get update
 apt-get install -y \
 {{ range .packages.debian.apt -}}
   {{ . | quote }} \
-{{ end -}}
-{{ end -}}
-{{ else if eq .osid "linux-debian" -}}
-#!/bin/bash
-
-{{ if and (hasKey .packages "debian") (hasKey .packages.debian "apt") .packages.debian.apt -}}
-sudo apt-get update
-sudo apt-get install -y \
-{{ range .packages.debian.apt -}}
-  {{ . | quote }} \
-{{ end -}}
+{{ end }}
 {{ end -}}
 
-{{ if and (hasKey .packages "debian") (hasKey .packages.debian "snap") .packages.debian.snap -}}
+{{ if and (hasKey .packages "debian") (hasKey .packages.debian "snap") .packages.debian.snap (not (stat "/etc/pve")) -}}
 {{ range .packages.debian.snap -}}
 sudo snap install --classic {{ . | quote }}
 {{ end -}}

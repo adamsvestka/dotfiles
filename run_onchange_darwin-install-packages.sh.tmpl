@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "darwin" -}}
+{{ if eq .osid "darwin" -}}
 #!/bin/bash
 
 {{ $hasFormula := and (hasKey .packages "darwin") (hasKey .packages.darwin "formula") .packages.darwin.formula -}}

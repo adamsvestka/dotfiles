@@ -4,20 +4,20 @@
 {{ if and (hasKey .packages.fedora "copr") .packages.fedora.copr -}}
 {{ range .packages.fedora.copr -}}
 sudo dnf copr enable -y {{ . }}
-{{ end -}}
+{{ end }}
 {{ end -}}
 
 {{ if and (hasKey .packages.fedora "dnf") .packages.fedora.dnf -}}
 sudo dnf install -y \
 {{ range .packages.fedora.dnf -}}
   {{ . | quote }} \
-{{ end -}}
+{{ end }}
 {{ end -}}
 
 {{ if and (hasKey .packages.fedora "flatpak") .packages.fedora.flatpak -}}
 sudo flatpak install -y flathub \
 {{ range .packages.fedora.flatpak -}}
   {{ . | quote }} \
-{{ end -}}
+{{ end }}
 {{ end -}}
 {{ end -}}
