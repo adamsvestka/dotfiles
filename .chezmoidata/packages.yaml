@@ -2,6 +2,7 @@ packages:
   darwin:
     formula:
       - ast-grep
+      - bat
       - btop
       - eza
       - fastfetch
@@ -19,6 +20,7 @@ packages:
       - wezterm
   debian:
     apt:
+      - bat
       - btop
       - eza
       - fastfetch
@@ -34,6 +36,7 @@ packages:
     copr:
       - dejan/lazygit
     dnf:
+      - bat
       - btop
       - eza
       - fastfetch
